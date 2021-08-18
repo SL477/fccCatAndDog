@@ -1,0 +1,13 @@
+{
+  "name": "fcc-cat-and-dog-image-recogniser",
+  "version": "0.01",
+  "description": "TensorFlow JS node image classifier",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^3.8.0",
+    "express": "^4.17.1"
+  }
+}
