@@ -8,3 +8,8 @@ classname[np.argmax(p[0])]
 
 Model link:
 https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing
+
+
+## Setup
+- Download the model from https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing
+- npm install
