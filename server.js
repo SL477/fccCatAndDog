@@ -18,11 +18,6 @@ app.route('/main.js')
         res.sendFile(process.cwd() + '/views/main.js');
     });
 
-app.route('/tf.min.js')
-    .get(function(req, res) {
-        res.sendFile(process.cwd() + "/views/tf.min.js");
-    });
-
 async function predict(pic) {
     const handler = tf.io.fileSystem('./jsmodel/model.json');
     const model = await tf.loadLayersModel(handler);
@@ -58,15 +53,6 @@ app.route('/summary').get(function(req,res) {
     summary();
     res.send("check server");
 });
-
-app.use(
-    '/jsmodel/model',
-    express.static(path.join(__dirname, "jsmodel/model.json"))
-);
-app.use(
-    '/jsmodel',
-    express.static(path.join(__dirname, "jsmodel"))
-);
 
 // 404 Not Found Middleware
 app.use(function(req, res, next) {
