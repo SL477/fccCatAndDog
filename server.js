@@ -1,18 +1,12 @@
 const express = require('express');
 const tf = require('@tensorflow/tfjs-node');
-//const { async } = require('regenerator-runtime');
-const path = require("path");
-const bodyParser = require('body-parser');
-const tfjs = require('@tensorflow/tfjs');
 
-//const model = tf.loadLayersModel('file:\\\C:\src\fccCatAndDog\jsmodel\model.json');
+const path = require("path");
 
 const app = express();
 
-//app.use(express.json());
-//app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
-app.use(bodyParser.json({ limit: '50mb' }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.route('/')
     .get(function (req, res) {
@@ -35,9 +29,7 @@ async function predict(pic) {
     //let ex = tfjs.browser.fromPixels(pic);
     const b = Buffer.from(pic, 'base64');
     let ex = tf.node.decodeImage(b, 3);
-    //ex.shape = [null, 150, 150, 3];
     ex = ex.expandDims(0)
-    //ex = ex.reshape([null, 150, 150, 3]);
     //console.log("shape", ex.shape);
     let p = model.predict(ex);
     //console.log("pred",p);
@@ -46,11 +38,15 @@ async function predict(pic) {
     return p.dataSync()[0];
 }
 
-app.route('/predict')
-    .post(function(req, res) {
-        //console.log('body', req.body);
-        res.json({'prediction': predict(req.body.pic)});
-    });
+app.post('/predict', async (req, res) => {
+    try {
+        let p = await predict(req.body.pic);
+        res.json({'prediction': p});
+    }
+    catch (e) {
+        res.json({'prediction': -1, 'error': e});
+    }
+});
 
 async function summary() {
     const handler = tf.io.fileSystem('./jsmodel/model.json');
