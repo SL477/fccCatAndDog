@@ -17,9 +17,16 @@ app.route('/main.js')
         res.sendFile(process.cwd() + '/views/main.js');
     });
 
+app.route('/tf.min.js')
+    .get(function(req, res) {
+        res.sendFile(process.cwd() + "/views/tf.min.js");
+    });
+
 async function predict() {
     const handler = tf.io.fileSystem('./jsmodel/model.json');
     const model = await tf.loadLayersModel(handler);
+    //model.predict())
+    let data = tf.FromPixels()
     return model.summary();
 }
 

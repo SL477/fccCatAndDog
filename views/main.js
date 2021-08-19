@@ -32,9 +32,11 @@ function imageLoaded() {
     // update the canvas and predict if cat or dog
     let canvas = document.getElementById("mycanvas");
     let context = canvas.getContext("2d");
-    canvas.width = img.width;
-    canvas.height = img.height;
+    canvas.width = 150;
+    canvas.height = 150;
     context.drawImage(img, 0,0, 150, 150);
 
-    console.log(canvas.toDataURL("image/png"));
+    //console.log(canvas.toDataURL("image/png"));
+    let tensor = tf.browser.fromPixels(canvas);
+    console.log("tensor", tensor);
 }

@@ -13,3 +13,4 @@ https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=shari
 ## Setup
 - Download the model from https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing
 - npm install
+- put tf.min.js into views folder
