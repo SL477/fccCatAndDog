@@ -18,6 +18,10 @@ app.route('/main.js')
         res.sendFile(process.cwd() + '/views/main.js');
     });
 
+app.get('/style.css', (req, res) => {
+    res.sendFile(process.cwd() + '/views/style.css');
+});
+
 app.post('/predict', async (req, res) => {
     try {
         let p = await predict(req.body.pic);
