@@ -1,6 +1,8 @@
 const express = require('express');
 const tf = require('@tensorflow/tfjs-node');
 
+const predict = require('./predict');
+
 const path = require("path");
 
 const app = express();
@@ -17,21 +19,6 @@ app.route('/main.js')
     .get(function(req, res) {
         res.sendFile(process.cwd() + '/views/main.js');
     });
-
-async function predict(pic) {
-    const handler = tf.io.fileSystem('./jsmodel/model.json');
-    const model = await tf.loadLayersModel(handler);
-    //let ex = tfjs.browser.fromPixels(pic);
-    const b = Buffer.from(pic, 'base64');
-    let ex = tf.node.decodeImage(b, 3);
-    ex = ex.expandDims(0)
-    //console.log("shape", ex.shape);
-    let p = model.predict(ex);
-    //console.log("pred",p);
-    console.log("pred",p.dataSync()[0]);
-    //console.log("pred",p.toString());
-    return p.dataSync()[0];
-}
 
 app.post('/predict', async (req, res) => {
     try {
