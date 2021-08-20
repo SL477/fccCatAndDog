@@ -3,8 +3,6 @@ const tf = require('@tensorflow/tfjs-node');
 
 const predict = require('./predict');
 
-const path = require("path");
-
 const app = express();
 
 app.use(express.json());

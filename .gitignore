@@ -1,3 +1,4 @@
 model.h5
 /jsmodel
 node_modules
+.env

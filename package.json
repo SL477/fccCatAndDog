@@ -4,14 +4,19 @@
   "description": "TensorFlow JS node image classifier",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest"
   },
   "dependencies": {
     "@tensorflow/tfjs-node": "^3.8.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1"
   },
   "author": {
     "name": "Thomas Fishwick",
     "url": "https://link477.com"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
   }
 }
