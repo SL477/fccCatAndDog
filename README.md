@@ -13,3 +13,10 @@ https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=shari
 ## Setup
 - Download the model from https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing
 - npm install
+
+## Docker
+Build with:
+docker build -t fcccatanddog .
+
+Run with:
+docker run -dp 3000:3000 fcccatanddog
