@@ -3,10 +3,11 @@ let fr;
 
 const results = ['Cat', 'Dog'];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function loadImage() {
-    let uploader = document.getElementById("imgupload");
+    let uploader = document.getElementById('imgupload');
     if (!uploader.files[0]) {
-        alert("No file selected");
+        alert('No file selected');
         return;
     }
     let file = uploader.files[0];
@@ -23,23 +24,23 @@ function createImage() {
 
 function imageLoaded() {
     // update the canvas and predict if cat or dog
-    let canvas = document.getElementById("mycanvas");
-    let context = canvas.getContext("2d");
+    let canvas = document.getElementById('mycanvas');
+    let context = canvas.getContext('2d');
     canvas.width = 150;
     canvas.height = 150;
     context.drawImage(img, 0,0, 150, 150);
 
     $.post('/predict', 
-    {
-        'pic': canvas.toDataURL("image/png").split(';base64,')[1]
-    }, function(res) {
-        console.log('predict', res);
-        console.log('prediction', res['prediction']);
-        if (res['prediction'] == -1) {
-            $('#res').text("Error");
-        }
-        else {
-            $('#res').text(results[res['prediction']]);
-        }
-    });
+        {
+            'pic': canvas.toDataURL('image/png').split(';base64,')[1]
+        }, function(res) {
+            console.log('predict', res);
+            console.log('prediction', res['prediction']);
+            if (res['prediction'] == -1) {
+                $('#res').text('Error');
+            }
+            else {
+                $('#res').text(results[res['prediction']]);
+            }
+        });
 }

@@ -1,22 +1,37 @@
 {
-  "name": "fcc-cat-and-dog-image-recogniser",
-  "version": "0.01",
-  "description": "TensorFlow JS node image classifier",
-  "main": "server.js",
+  "name": "fcccatanddog",
+  "version": "1.0.0",
+  "description": "A project to use node around a TensorFlow model",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "jest"
+    "test": "jest",
+    "start": "node dist/server.js"
   },
-  "dependencies": {
-    "@tensorflow/tfjs-node": "^3.8.0",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SL477/fccCatAndDog.git"
   },
+  "keywords": [
+    "node",
+    "TensorFlow"
+  ],
   "author": {
     "name": "Thomas Fishwick",
     "url": "https://link477.com"
   },
+  "bugs": {
+    "url": "https://github.com/SL477/fccCatAndDog/issues"
+  },
+  "homepage": "https://github.com/SL477/fccCatAndDog#readme",
   "devDependencies": {
-    "jest": "^27.0.6"
+    "@types/express": "^4.17.14",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
+    "eslint": "^8.26.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.0.0",
+    "express": "^4.18.2"
   }
 }
