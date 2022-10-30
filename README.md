@@ -1,23 +1,28 @@
 # fccCatAndDog
- Cat and Dog Image Classifier
 
-Image height & width needs to be 150 pixels
-classname = ['cat', 'dog']
-p = model.predict(data)
-classname[np.argmax(p[0])]
+Cat and Dog Image Classifier
 
-Model link:
-https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing
+Image height & width needs to be 160 pixels
 
-![Final app](https://link477.com/dataScience/CatAndDogImageClassifier.JPG)
+[Model link](https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing)
+
+![Final app](CatAndDogImageClassifier.JPG)
 
 ## Setup
-- Download the model from https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing
+
+- Download the model from [here](https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing)
 - npm install
 
 ## Docker
+
 Build with:
+
+```bash
 docker build -t fcccatanddog .
+```
 
 Run with:
+
+```bash
 docker run -dp 3000:3000 fcccatanddog
+```
