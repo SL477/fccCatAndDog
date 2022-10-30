@@ -39,7 +39,7 @@ const express_1 = __importDefault(require("express"));
 const tf = __importStar(require("@tensorflow/tfjs-node"));
 const predict_1 = __importDefault(require("./predict"));
 const app = (0, express_1.default)();
-const port = 3000;
+const port = process.env.PORT || 3001;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.get('/', (req, res) => {

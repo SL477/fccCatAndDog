@@ -3,7 +3,7 @@ import * as tf from '@tensorflow/tfjs-node';
 import predict from './predict';
 
 const app = express();
-const port = process.env.PORT || 3001;;
+const port = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
