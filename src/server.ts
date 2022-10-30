@@ -13,7 +13,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/main.js', (req: Request, res: Response) => {
-    res.sendFile(process.cwd() + '/dist/client/main.js');
+    res.sendFile(process.cwd() + '/client/main.js');
 });
 
 app.get('/style.css', (req: Request, res: Response) => {
@@ -27,33 +27,15 @@ app.get('/summary', async (req: Request, res: Response) => {
     res.send('Look at the server');
 });
 
-app.post('/predict',async (req: Request, res: Response) => {
+app.post('/predict', async (req: Request, res: Response) => {
     try {
         // console.log('req', req.body.pic);
         const p = await predict(req.body.pic);
-        const preds = p.split(' ');
-        let cat = preds[5];
-        while (cat.indexOf('[') > -1) {
-            cat = cat.replace('[', '');
-        }
-        while (cat.indexOf(',') > -1) {
-            cat = cat.replace(',', '');
-        }
-        let dog = preds[6];
-        while (dog.indexOf(']') > -1) {
-            dog = dog.replace(']', '');
-        }
-        while (dog.indexOf(',') > -1) {
-            dog = dog.replace(',', '');
-        }
-        res.json({'prediction': {
-            'cat': Number(cat),
-            'dog': Number(dog),
-        }});
+        res.json(p);
     }
     catch (e) {
         console.log('post predict', e);
-        res.json({'prediction': -1, 'error': e});
+        res.json({'classification': 'error', 'error': true, 'cat': 0, 'dog': 0});
     }
 });
 

@@ -37,18 +37,9 @@ function loadImage() {
                                         })
                                         .then(jsn => {
                                             console.log('prediction', jsn);
-                                            let clss = 'Neither';
-                                            if (jsn['prediction'] == -1) {
-                                                clss = 'Error';
-                                            }
-                                            else if (jsn['prediction']['cat'] >= 0.5) {
-                                                clss = 'Cat';
-                                            }
-                                            else if (jsn['prediction']['dog'] >= 0.5) {
-                                                clss = 'Dog';
-                                            }
+                                            
                                             if (result_text) {
-                                                result_text.textContent = clss;
+                                                result_text.textContent = jsn.classification;
                                             }
                                             return;
                                         });
