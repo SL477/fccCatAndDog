@@ -26,3 +26,19 @@ Run with:
 ```bash
 docker run -dp 3000:3000 fcccatanddog
 ```
+
+## Build
+
+Transpile TypeScript with
+
+```bash
+tsc
+```
+
+Run babel with
+
+```bash
+npm run babel_me
+```
+
+Then delete the unneeded require calls.

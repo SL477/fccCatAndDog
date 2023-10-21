@@ -11,23 +11,14 @@ export default async function predict(pic: string) : Promise<Prediction> {
     ex = ex.reshape([1, 160, 160, 3]);
     const p = model.predict(ex);
 
-    // console.log('pred', p.toString());
-
-    const preds = p.toString().split(' ');
-    let cat = preds[5];
-    while (cat.indexOf('[') > -1) {
-        cat = cat.replace('[', '');
-    }
-    while (cat.indexOf(',') > -1) {
-        cat = cat.replace(',', '');
-    }
-    let dog = preds[6];
-    while (dog.indexOf(']') > -1) {
-        dog = dog.replace(']', '');
-    }
-    while (dog.indexOf(',') > -1) {
-        dog = dog.replace(',', '');
-    }
+    const predictions = p.toString().split(' ');
+    let cat = predictions[5];
+    cat = cat.replace(/\[/g, '');
+    cat = cat.replace(/,/g, '');
+    
+    let dog = predictions[6];
+    dog = dog.replace(/\]/g, '');
+    dog = dog.replace(/,/g, '');
 
     const ret: Prediction = {
         'error': false,

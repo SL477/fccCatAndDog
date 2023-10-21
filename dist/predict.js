@@ -1,11 +1,7 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -41,21 +37,13 @@ function predict(pic) {
         let ex = tf.node.decodeImage(b, 3);
         ex = ex.reshape([1, 160, 160, 3]);
         const p = model.predict(ex);
-        const preds = p.toString().split(' ');
-        let cat = preds[5];
-        while (cat.indexOf('[') > -1) {
-            cat = cat.replace('[', '');
-        }
-        while (cat.indexOf(',') > -1) {
-            cat = cat.replace(',', '');
-        }
-        let dog = preds[6];
-        while (dog.indexOf(']') > -1) {
-            dog = dog.replace(']', '');
-        }
-        while (dog.indexOf(',') > -1) {
-            dog = dog.replace(',', '');
-        }
+        const predictions = p.toString().split(' ');
+        let cat = predictions[5];
+        cat = cat.replace(/\[/g, '');
+        cat = cat.replace(/,/g, '');
+        let dog = predictions[6];
+        dog = dog.replace(/\]/g, '');
+        dog = dog.replace(/,/g, '');
         const ret = {
             'error': false,
             'cat': Number(cat),

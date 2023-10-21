@@ -3,5 +3,5 @@ export default interface Prediction {
     'cat': number,
     'dog': number,
     'classification': string
-// eslint-disable-next-line semi
+    // eslint-disable-next-line semi
 }

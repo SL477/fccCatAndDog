@@ -1,11 +1,7 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -38,7 +34,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const tf = __importStar(require("@tensorflow/tfjs-node"));
 const predict_1 = __importDefault(require("./predict"));
-const app = (0, express_1.default)();
+const app = express_1.default();
 const port = process.env.PORT || 3001;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
@@ -58,7 +54,7 @@ app.get('/summary', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 }));
 app.post('/predict', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const p = yield (0, predict_1.default)(req.body.pic);
+        const p = yield predict_1.default(req.body.pic);
         res.json(p);
     }
     catch (e) {
