@@ -1,6 +1,6 @@
 export interface Prediction {
-    'error': boolean,
-    'cat': number,
-    'dog': number,
-    'classification': string
+    error: boolean;
+    cat: number;
+    dog: number;
+    classification: string;
 }
