@@ -1,0 +1,10 @@
+model.h5
+node_modules/
+.env
+jsmodel
+dist
+client
+**/*.js
+**/*.json
+**/*.map
+jest.config.ts

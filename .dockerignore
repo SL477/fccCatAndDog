@@ -1,1 +1,12 @@
 node_modules
+src
+cat.txt
+.eslintignore
+.eslintrc.json
+.prettierignore
+.prettierrc
+babel.config.json
+CatAndDogImageClassifier.JPG
+jest.config.ts
+README.md
+tsconfig.json

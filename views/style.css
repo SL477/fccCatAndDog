@@ -16,7 +16,9 @@ body {
     background: linear-gradient(90deg, #a1adf1 0, #a3585d 80%);
 }
 
-h1, fieldset, p {
+h1,
+fieldset,
+p {
     background: rgba(255, 255, 255, 0.7);
     border-radius: 15px;
     text-align: center;
