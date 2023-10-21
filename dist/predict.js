@@ -15,30 +15,22 @@ function predict(pic) {
         const handler = tfjs_node_1.io.fileSystem('./jsmodel/model.json');
         const model = yield tfjs_node_1.loadLayersModel(handler);
         const b = Buffer.from(pic, 'base64');
-        let ex = tfjs_node_1.node.decodeImage(b, 3);
-        ex = ex.reshape([1, 160, 160, 3]);
+        const ex = tfjs_node_1.node.decodeImage(b, 3).reshape([1, 160, 160, 3]);
         const p = model.predict(ex);
         const predictions = p.toString().split(' ');
-        let cat = predictions[5];
-        cat = cat.replace(/\[/g, '');
-        cat = cat.replace(/,/g, '');
-        let dog = predictions[6];
-        dog = dog.replace(/\]/g, '');
-        dog = dog.replace(/,/g, '');
+        const cat = SortOutPrediction(predictions[5]);
+        const dog = SortOutPrediction(predictions[6]);
         const ret = {
             'error': false,
-            'cat': Number(cat),
-            'dog': Number(dog),
-            'classification': 'Neither',
+            'cat': cat,
+            'dog': dog,
+            'classification': cat >= 0.5 ? 'Cat' : dog >= 0.5 ? 'Dog' : 'Neither',
         };
-        if (ret['cat'] >= 0.5) {
-            ret['classification'] = 'Cat';
-        }
-        else if (ret['dog'] >= 0.5) {
-            ret['classification'] = 'Dog';
-        }
         return ret;
     });
 }
 exports.default = predict;
+function SortOutPrediction(prediction) {
+    return Number(prediction.replace(/[\]\[,]/g, ''));
+}
 //# sourceMappingURL=predict.js.map
