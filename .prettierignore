@@ -6,4 +6,3 @@ dist/
 client/
 *.js
 *.json
-babelOut/

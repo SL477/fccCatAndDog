@@ -1,12 +1,12 @@
-import * as tf from '@tensorflow/tfjs-node';
-import Prediction from './prediction';
+import {io, loadLayersModel, node} from '@tensorflow/tfjs-node';
+import {Prediction} from './prediction';
 
 export default async function predict(pic: string) : Promise<Prediction> {
-    const handler = tf.io.fileSystem('./jsmodel/model.json');
-    const model = await tf.loadLayersModel(handler);
+    const handler = io.fileSystem('./jsmodel/model.json');
+    const model = await loadLayersModel(handler);
 
     const b = Buffer.from(pic, 'base64');
-    let ex = tf.node.decodeImage(b, 3);
+    let ex = node.decodeImage(b, 3);
 
     ex = ex.reshape([1, 160, 160, 3]);
     const p = model.predict(ex);

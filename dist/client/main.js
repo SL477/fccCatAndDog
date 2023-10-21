@@ -1,7 +1,8 @@
 "use strict";
 const result_text = document.getElementById('res');
+const uploader = document.getElementById('imgUpload');
+uploader.onchange = () => loadImage();
 function loadImage() {
-    const uploader = document.getElementById('imgupload');
     if (uploader) {
         if (uploader.files) {
             if (uploader.files[0]) {
@@ -12,7 +13,7 @@ function loadImage() {
                         const img = new Image();
                         img.src = fr.result;
                         img.onload = () => {
-                            const canvas = document.getElementById('mycanvas');
+                            const canvas = document.getElementById('myCanvas');
                             if (canvas) {
                                 const context = canvas.getContext('2d');
                                 canvas.width = 160;

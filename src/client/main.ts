@@ -1,8 +1,12 @@
 const result_text = document.getElementById('res');
+const uploader: HTMLInputElement = document.getElementById('imgUpload') as HTMLInputElement;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+uploader.onchange = () => loadImage();
+
+/**
+ * This is to load the image, convert it to the right dimensions and then get the predictions
+ */
 function loadImage() {
-    const uploader: HTMLInputElement = document.getElementById('imgupload') as HTMLInputElement;
     if (uploader){
         if (uploader.files) {
             if (uploader.files[0]) {
@@ -14,7 +18,7 @@ function loadImage() {
                         img.src = fr.result as string;
                         img.onload = () => {
                             // update the canvas and predict if cat or dog
-                            const canvas: HTMLCanvasElement = document.getElementById('mycanvas') as HTMLCanvasElement;
+                            const canvas: HTMLCanvasElement = document.getElementById('myCanvas') as HTMLCanvasElement;
                             if (canvas) {
                                 const context = canvas.getContext('2d');
                                 canvas.width = 160;

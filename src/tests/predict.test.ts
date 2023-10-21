@@ -1,10 +1,9 @@
 import { expect, test } from '@jest/globals';
 import predict from '../predict';
-import * as dotenv from 'dotenv';
-dotenv.config();
+import fs from 'fs';
 
 test('Check that picture of cat returns cat', () => {
-    const cat = process.env.CAT? process.env.CAT : '';
+    const cat = fs.readFileSync('cat.txt').toString();
     return predict(cat).then(data => {
         expect(data.classification).toBe('Cat');
     });

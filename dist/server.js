@@ -1,23 +1,4 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -32,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const tf = __importStar(require("@tensorflow/tfjs-node"));
+const tfjs_node_1 = require("@tensorflow/tfjs-node");
 const predict_1 = __importDefault(require("./predict"));
 const app = express_1.default();
 const port = process.env.PORT || 3001;
@@ -48,9 +29,10 @@ app.get('/style.css', (req, res) => {
     res.sendFile(process.cwd() + '/views/style.css');
 });
 app.get('/summary', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const model = yield tf.loadLayersModel(tf.io.fileSystem('./jsmodel/model.json'));
-    model.summary();
-    res.send('Look at the server');
+    const model = yield tfjs_node_1.loadLayersModel(tfjs_node_1.io.fileSystem('./jsmodel/model.json'));
+    let summary = '';
+    model.summary(undefined, undefined, (x) => summary += '<br>' + x);
+    res.send('Summary: ' + summary);
 }));
 app.post('/predict', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -62,7 +44,7 @@ app.post('/predict', (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.json({ 'classification': 'error', 'error': true, 'cat': 0, 'dog': 0 });
     }
 }));
-app.use(function (req, res, next) {
+app.use(function (req, res) {
     res.status(404)
         .type('text')
         .send('Not Found');
