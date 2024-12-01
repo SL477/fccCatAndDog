@@ -21,10 +21,10 @@ function predict(pic) {
         const cat = SortOutPrediction(predictions[5]);
         const dog = SortOutPrediction(predictions[6]);
         const ret = {
-            'error': false,
-            'cat': cat,
-            'dog': dog,
-            'classification': cat >= 0.5 ? 'Cat' : dog >= 0.5 ? 'Dog' : 'Neither',
+            error: false,
+            cat: cat,
+            dog: dog,
+            classification: cat >= 0.5 ? 'Cat' : dog >= 0.5 ? 'Dog' : 'Neither',
         };
         return ret;
     });

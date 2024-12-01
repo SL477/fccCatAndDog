@@ -31,7 +31,7 @@ app.get('/style.css', (req, res) => {
 app.get('/summary', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const model = yield tfjs_node_1.loadLayersModel(tfjs_node_1.io.fileSystem('./jsmodel/model.json'));
     let summary = '';
-    model.summary(undefined, undefined, (x) => summary += '<br>' + x);
+    model.summary(undefined, undefined, (x) => (summary += '<br>' + x));
     res.send('Summary: ' + summary);
 }));
 app.post('/predict', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -41,13 +41,11 @@ app.post('/predict', (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     catch (e) {
         console.log('post predict', e);
-        res.json({ 'classification': 'error', 'error': true, 'cat': 0, 'dog': 0 });
+        res.json({ classification: 'error', error: true, cat: 0, dog: 0 });
     }
 }));
 app.use(function (req, res) {
-    res.status(404)
-        .type('text')
-        .send('Not Found');
+    res.status(404).type('text').send('Not Found');
 });
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
