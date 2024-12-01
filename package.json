@@ -25,23 +25,23 @@
   },
   "homepage": "https://github.com/SL477/fccCatAndDog#readme",
   "devDependencies": {
-    "@babel/cli": "^7.25.6",
-    "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.4",
-    "@babel/preset-typescript": "^7.24.7",
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
     "@types/express": "^5.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.7.0",
-    "@typescript-eslint/parser": "^8.7.0",
+    "@typescript-eslint/eslint-plugin": "^8.16.0",
+    "@typescript-eslint/parser": "^8.16.0",
     "babel-jest": "^29.7.0",
     "dotenv": "^16.4.5",
-    "eslint": "^8.52.0",
+    "eslint": "^9.16.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@tensorflow/tfjs-node": "^4.21.0",
-    "express": "^4.21.0"
+    "@tensorflow/tfjs-node": "^4.22.0",
+    "express": "^4.21.1"
   }
 }

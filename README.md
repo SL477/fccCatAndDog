@@ -12,8 +12,8 @@ Image height & width needs to be 160 pixels
 
 ## Setup
 
--   Download the model from [here](https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing)
--   npm install
+- Download the model from [here](https://drive.google.com/file/d/1ZYKbOzHPkz3Bq9pbASrr4ZuyJSjCuIFs/view?usp=sharing)
+- npm install
 
 ## Docker
 
