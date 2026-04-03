@@ -51,20 +51,9 @@ npm run babel_me
 
 Then delete the unneeded require calls.
 
-## Old dependancies
+## old dependancies
 
-"devDependencies": {
-    "@babel/cli": "^7.28.6",
-    "@babel/core": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
-    "@babel/preset-typescript": "^7.28.5",
-    "@types/express": "^5.0.6",
-    "@typescript-eslint/eslint-plugin": "^8.57.2",
-    "@typescript-eslint/parser": "^8.57.2",
-    "babel-jest": "^30.3.0",
-    "eslint": "^10.1.0",
-    "jest": "^30.3.0",
-    "ts-jest": "^29.4.6",
-    "ts-node": "^10.9.2",
-    "typescript": "^6.0.2"
-  },
+"@typescript-eslint/eslint-plugin": "^8.57.2",
+"@typescript-eslint/parser": "^8.57.2",
+"babel-jest": "^30.3.0",
+"ts-jest": "^29.4.6",

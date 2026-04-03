@@ -1,3 +1,4 @@
 model.h5
 node_modules
 babelOut/
+.env
