@@ -1,6 +1,2 @@
-client/
-dist/
 jsmodel/
 node_modules/
-jest.config.ts
-tsconfig.json
