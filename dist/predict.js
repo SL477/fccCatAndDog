@@ -1,4 +1,10 @@
 import { io, loadLayersModel, node } from '@tensorflow/tfjs-node';
+
+/**
+ * Predict from the given base 64 string whether the image is a cat or dog
+ * @param {string} pic The base 64 string of an image of 160px x 160px
+ * @returns {{error: boolean, cat: number, dog: number, classification: string}}
+ */
 export default async function predict(pic) {
     const handler = io.fileSystem('./jsmodel/model.json');
     const model = await loadLayersModel(handler);
@@ -16,7 +22,12 @@ export default async function predict(pic) {
     };
     return ret;
 }
+
+/**
+ * Replace the [, ] and , in the returned string and converts to a number
+ * @param {string} prediction 
+ * @returns {number}
+ */
 function SortOutPrediction(prediction) {
     return Number(prediction.replace(/[\]\[,]/g, ''));
 }
-//# sourceMappingURL=predict.js.map

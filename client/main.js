@@ -3,6 +3,10 @@
 const result_text = document.getElementById('res');
 const uploader = document.getElementById('imgUpload');
 uploader.onchange = () => loadImage();
+
+/**
+ * This is to load the image, convert it to the right dimensions and then get the predictions
+ */
 function loadImage() {
   if (uploader) {
     if (uploader.files) {
