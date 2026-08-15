@@ -52,6 +52,4 @@ app.use(function (req: Request, res: Response) {
     res.status(404).type('text').send('Not Found');
 });
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-});
+app.listen(port, () => console.log(`Listening on port ${port}`));
