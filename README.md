@@ -26,34 +26,13 @@ docker build -t fcccatanddog .
 Run with:
 
 ```bash
-docker run -dp 3000:3000 fcccatanddog
+docker run -dp 3001:3001 fcccatanddog
 ```
 
 ## Build
-
-Transpile TypeScript with
-
-```bash
-tsc --watch
-```
 
 Run prettier with
 
 ```bash
 prettier . --write
 ```
-
-Run babel with
-
-```bash
-npm run babel_me
-```
-
-Then delete the unneeded require calls.
-
-## old dependancies
-
-"@typescript-eslint/eslint-plugin": "^8.57.2",
-"@typescript-eslint/parser": "^8.57.2",
-"babel-jest": "^30.3.0",
-"ts-jest": "^29.4.6",

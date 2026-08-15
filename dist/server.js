@@ -1,53 +1,60 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const tfjs_node_1 = require("@tensorflow/tfjs-node");
-const predict_1 = __importDefault(require("./predict"));
-const app = express_1.default();
+import express from 'express';
+import { modelLoader } from './modelHelper.js';
+import predict from './predict.js';
+import path from 'path';
+
+const app = express();
 const port = process.env.PORT || 3001;
-app.use(express_1.default.json());
-app.use(express_1.default.urlencoded({ extended: true }));
-app.get('/', (req, res) => {
-    res.sendFile(process.cwd() + '/views/index.html');
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
+
+// return the static files
+app.use(express.static(path.join(process.cwd(), 'views')));
+
+let model;
+
+async function initModel() {
+  try {
+    model = await modelLoader();
+  }
+  catch (err) {
+    console.error('Failed to load Tensorflow model:', err);
+    process.exit(1);
+  }
+}
+
+/**
+ * Get the model summary
+ */
+app.get('/summary', async (req, res) => {
+  // const model = await loadLayersModel(io.fileSystem('./jsmodel/model.json'));
+  let summary = '';
+  model.summary(undefined, undefined, (x) => (summary += '<br>' + x));
+  res.send('Summary: ' + summary);
 });
-app.get('/main.js', (req, res) => {
-    res.sendFile(process.cwd() + '/client/main.js');
+
+/**
+ * Get the predictions
+ */
+app.post('/predict', async (req, res) => {
+  try {
+    res.json(await predict(req.body.pic, model));
+  }
+  catch (e) {
+    console.log('post predict', e);
+    res.json({ classification: 'error', error: true, cat: 0, dog: 0 });
+  }
 });
-app.get('/style.css', (req, res) => {
-    res.sendFile(process.cwd() + '/views/style.css');
-});
-app.get('/summary', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const model = yield tfjs_node_1.loadLayersModel(tfjs_node_1.io.fileSystem('./jsmodel/model.json'));
-    let summary = '';
-    model.summary(undefined, undefined, (x) => (summary += '<br>' + x));
-    res.send('Summary: ' + summary);
-}));
-app.post('/predict', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const p = yield predict_1.default(req.body.pic);
-        res.json(p);
-    }
-    catch (e) {
-        console.log('post predict', e);
-        res.json({ classification: 'error', error: true, cat: 0, dog: 0 });
-    }
-}));
+
+// 404 Not Found Middleware
 app.use(function (req, res) {
-    res.status(404).type('text').send('Not Found');
+  res.status(404).type('text').send('Not Found');
 });
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+
+app.use((err, req, res) => {
+  console.error('[✖] Unhandled error:', err);
+  res.status(500).json({ error: 'Internal Server Error' });
 });
-//# sourceMappingURL=server.js.map
+
+initModel().then(() => app.listen(port, () => console.log(`Listening on port ${port}`)));
