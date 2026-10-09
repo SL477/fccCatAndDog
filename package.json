@@ -25,11 +25,11 @@
   "homepage": "https://github.com/SL477/fccCatAndDog#readme",
   "devDependencies": {
     "@types/express": "^5.0.6",
-    "eslint": "^10.8.1"
+    "eslint": "^10.12.0"
   },
   "dependencies": {
     "@tensorflow/tfjs-node": "^4.22.0",
-    "express": "^5.2.1"
+    "express": "^5.3.0"
   },
   "type": "module"
 }
